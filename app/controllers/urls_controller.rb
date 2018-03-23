@@ -12,7 +12,11 @@ class UrlsController < ApplicationController
 		@url = Url.new(url_params)
 		@url.shorten
 		if @url.save
-			redirect_to @url
+			# redirect_to @url
+			respond_to do |format|
+				format.html { redirect_to @url }
+				format.js
+			end
 		else
 			render 'new'
 		end
